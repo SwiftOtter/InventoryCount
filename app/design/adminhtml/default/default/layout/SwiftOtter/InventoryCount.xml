@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_openorders_index>
+        <reference name="content">
+            <block type="SwiftOtter_InventoryCount/OpenOrders" name="open_orders"/>
+        </reference>
+    </adminhtml_openorders_index>
+    <!--<adminhtml_inventorycount_index>-->
+        <!--<block type="SwiftOtter_Inventory/Admin_Edit_Grid" name="root" output="toHtml" />-->
+        <!--<block type="core/template" name="inventory_js" template="SwiftOtter/Inventory/Js.phtml"/>-->
+    <!--</adminhtml_inventorycount_index>-->
+</layout>

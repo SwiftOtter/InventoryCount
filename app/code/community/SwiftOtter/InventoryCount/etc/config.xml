@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SwiftOtter_InventoryCount>
+            <version>0.0.1</version>
+        </SwiftOtter_InventoryCount>
+    </modules>
+    <global>
+        <models>
+            <SwiftOtter_InventoryCount>
+                <class>SwiftOtter_InventoryCount_Model</class>
+                <resourceModel>SwiftOtter_InventoryCount_Resource</resourceModel>
+            </SwiftOtter_InventoryCount>
+
+            <SwiftOtter_InventoryCount_Resource>
+                <class>SwiftOtter_InventoryCount_Model_Resource</class>
+                <entities>
+                    <Log>
+                        <table>swiftotter_product_quantity_cache_log</table>
+                    </Log>
+                </entities>
+            </SwiftOtter_InventoryCount_Resource>
+        </models>
+
+        <blocks>
+            <SwiftOtter_InventoryCount>
+                <class>SwiftOtter_InventoryCount_Block</class>
+            </SwiftOtter_InventoryCount>
+        </blocks>
+        <helpers>
+            <SwiftOtter_InventoryCount>
+                <class>SwiftOtter_InventoryCount_Helper</class>
+            </SwiftOtter_InventoryCount>
+        </helpers>
+        <resources>
+            <SwiftOtter_InventoryCount>
+                <setup>
+                    <module>SwiftOtter_InventoryCount</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </SwiftOtter_InventoryCount>
+        </resources>
+
+        <events>
+            <swiftotter_inventory_open_order_changed>
+                <observers>
+                    <SwiftOtter_InventoryCount>
+                        <class>SwiftOtter_InventoryCount_Model_Observer</class>
+                        <method>swiftotterInventoryOpenOrderChanged</method>
+                    </SwiftOtter_InventoryCount>
+                </observers>
+            </swiftotter_inventory_open_order_changed>
+        </events>
+
+        <!--<template>-->
+        <!--<email>-->
+        <!--<cataloginventory_management_alert_email>-->
+        <!--<label>Inventory Reorder Point Template</label>-->
+        <!--<file>swiftotter/inventory/reorder.html</file>-->
+        <!--<type>html</type>-->
+        <!--</cataloginventory_management_alert_email>-->
+        <!--<cataloginventory_management_received_inventory_email>-->
+        <!--<label>Received Inventory Template</label>-->
+        <!--<file>swiftotter/inventory/received_backorder.html</file>-->
+        <!--<type>html</type>-->
+        <!--</cataloginventory_management_received_inventory_email>-->
+        <!--</email>-->
+        <!--</template>-->
+
+    </global>
+
+    <frontend>
+        <routers>
+            <SwiftOtter_InventoryCount>
+                <use>standard</use>
+                <args>
+                    <module>SwiftOtter_InventoryCount_Frontend</module>
+                    <frontName>swiftotterinventory</frontName>
+                </args>
+            </SwiftOtter_InventoryCount>
+        </routers>
+    </frontend>
+
+    <crontab>
+        <jobs>
+            <SwiftOtter_InventoryCount>
+                <schedule>
+                    <cron_expr>30 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>SwiftOtter_InventoryCount/Cron::reindexUpdatedProducts</model>
+                </run>
+            </SwiftOtter_InventoryCount>
+        </jobs>
+    </crontab>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <SwiftOtter_InventoryCount before="Mage_Adminhtml">SwiftOtter_InventoryCount_Adminhtml</SwiftOtter_InventoryCount>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <SwiftOtter_InventoryCount>
+                    <file>SwiftOtter/InventoryCount.xml</file>
+                </SwiftOtter_InventoryCount>
+            </updates>
+        </layout>
+        <events>
+            <!--<catalog_product_load_after>-->
+            <!--<observers>-->
+            <!--<SwiftOtter_InventoryCount>-->
+            <!--<type>singleton</type>-->
+            <!--<class>SwiftOtter_InventoryCount_Model_Observer</class>-->
+            <!--<method>catalogProductLoadAfter</method>-->
+            <!--</SwiftOtter_InventoryCount>-->
+            <!--</observers>-->
+            <!--</catalog_product_load_after>-->
+            <!--<cataloginventory_stock_item_load_after>-->
+            <!--<observers>-->
+            <!--<SwiftOtter_InventoryCount>-->
+            <!--<type>singleton</type>-->
+            <!--<class>SwiftOtter_InventoryCount_Model_Observer</class>-->
+            <!--<method>cataloginventoryStockItemLoadAfter</method>-->
+            <!--</SwiftOtter_InventoryCount>-->
+            <!--</observers>-->
+            <!--</cataloginventory_stock_item_load_after>-->
+
+            <!--<sales_shipment_item_save_after>-->
+            <!--<observers>-->
+            <!--<SwiftOtter_InventoryCount>-->
+            <!--<type>singleton</type>-->
+            <!--<class>SwiftOtter_InventoryCount_Model_Observer</class>-->
+            <!--<method>salesShipmentItemSaveAfter</method>-->
+            <!--</SwiftOtter_InventoryCount>-->
+            <!--</observers>-->
+            <!--</sales_shipment_item_save_after>-->
+            <!--<sales_order_item_collection_load_after>-->
+            <!--<observers>-->
+            <!--<SwiftOtter_InventoryCount>-->
+            <!--<type>singleton</type>-->
+            <!--<class>SwiftOtter_InventoryCount_Model_Observer</class>-->
+            <!--<method>salesOrderItemCollectionLoadAfter</method>-->
+            <!--</SwiftOtter_InventoryCount>-->
+            <!--</observers>-->
+            <!--</sales_order_item_collection_load_after>-->
+        </events>
+    </adminhtml>
+</config>

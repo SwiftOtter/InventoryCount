@@ -1,0 +1,17 @@
+{
+    "name": "SwiftOtter/InventoryCount",
+    "description": "SwiftOtter's inventory counting module adds to the inventory module to provide QTY Available vs QTY on Hand.",
+    "version": "1.0.0",
+    "type": "magento-module",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*",
+        "SwiftOtter/Base":"*",
+        "SwiftOtter/Inventory":"*"
+    },
+    "authors":[
+        {
+            "name": "Joseph Maxwell",
+            "email": "joseph@swiftotter.com"
+        }
+    ]
+}
